@@ -1,0 +1,41 @@
+class Solution {
+    public int minDays(int[] bloomDay, int m, int k) {
+        if ((long)m * k > bloomDay.length) return -1;
+        int low =1;
+        int high =0;
+
+        for(int b : bloomDay){
+            high = Math.max(high, b);
+        }
+        int ans =high;
+        
+            while(low<=high){
+                int mid = low + (high-low)/2;
+                if(canMake(bloomDay,m,k,mid)){
+                    ans = mid;
+                    high = mid-1; //search more small
+                }else{
+                    low = mid+1;
+                }
+            }
+            return ans;
+        }
+        private boolean canMake(int[] arr, int m, int k, int days) {
+        int count = 0;
+        int bouquets = 0;
+
+        for (int d : arr) {
+            if (d <= days) {
+                count++;
+                if (count == k) {
+                    bouquets++;
+                    count = 0;
+                }
+            } else {
+                count = 0;
+            }
+        }
+
+        return bouquets >= m;
+    }
+    }
