@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main {
+
+   
+    static boolean isMagical(int num) {
+        while (num > 0) {
+            int d = num % 10;
+            if (d == 2 || d == 3 || d == 5 || d == 7)
+                return true;
+            num /= 10;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();  // test cases
+
+        while (t-- > 0) {
+            int n = sc.nextInt();
+            int count = 0;
+
+            for (int i = 1; i <= n; i++) {
+                if (isMagical(i)) count++;
+            }
+
+            System.out.println(count);
+        }
+    }
+}
