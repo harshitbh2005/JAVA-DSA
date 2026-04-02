@@ -13,7 +13,7 @@ class Solution {
         inorder(root.left, k);
 
         count++;
-        if (count == k) {
+        if (k == count) {
             answer = root.val;
             return;
         }
